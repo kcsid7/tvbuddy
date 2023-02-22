@@ -15,7 +15,7 @@ const $castList = $("#cast-list");
 // http://api.tvmaze.com/shows/431/episodes //431 = friends Id
 // http://api.tvmaze.com/shows/431/images // 431 = friends Id
  
-const apiURL = 'http://api.tvmaze.com/';
+const apiURL = 'https://api.tvmaze.com/';
 
  
 /** Given a search term, search for tv shows that match that query.
