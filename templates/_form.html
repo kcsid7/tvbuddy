@@ -1,0 +1,11 @@
+{% for field in form if field.widget.input_type != 'hidden' %}
+<div class="form-group">
+    {{ field.label }}
+    {{ field(class_="form-control") }}
+
+    {% for error in field.errrors %}
+    {{ error }}
+    {% endfor %}
+</div>
+{% endfor %}
+{{ form.csrf_token }}

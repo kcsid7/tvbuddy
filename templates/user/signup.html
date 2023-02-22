@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} Home Page {% endblock %}
+
+
+
+{% block content %} 
+
+<div class="container text-center d-flex flex-column align-items-center">
+
+    <h1 class="display-1">
+        <i class="fa-solid fa-display"></i>Buddy Signup
+    </h1>
+    
+    <form method="POST" class="w-50">
+
+        {% include '_form.html' %}
+
+        <button type="submit" class="btn btn-md btn-success mt-4">Signup</button>
+        <button type="button" class="btn btn-md btn-primary mt-4"><a href="/">Home</a></button>
+    </form>
+    
+</div>
+
+
+
+
+
+{% endblock %}

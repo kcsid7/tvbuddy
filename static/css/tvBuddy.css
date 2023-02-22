@@ -1,0 +1,121 @@
+body {
+    background-color: rgb(177, 192, 224);
+}
+
+#web-title {
+    font-size: 7rem;
+}
+
+#top_block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Show {
+    padding: 10px;
+}
+
+#shows-list {
+    margin-top: 20px;
+}
+
+.del_actor_profile {
+    display: none;
+}
+
+.card_profile:hover .del_actor_profile {
+    display: block;
+}
+
+
+
+.profile-data-img {
+    height: 150px;
+}
+
+.show-data-img {
+    height: 15rem;
+    width: 11rem;
+}
+
+#episodes-area {
+    display: flex;
+    flex-direction: column;
+}
+
+#episodes-area-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+#episodes-title {
+    font-size: 2.5rem;
+}
+
+.card {
+    background-color: rgb(231 217 217 / 35%);
+    align-items: center;
+    padding-top: 1rem;
+    text-align: center  
+}
+
+#episodes-list {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.episode {
+    display: flex;
+    margin: 20px 5px;
+    border-bottom: 3px solid snow;
+    border-left: 3px solid snow;
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+
+.episode-image {
+    width: 320px;
+    height: 200px;
+}
+
+.cast-image {
+    height: 13rem;
+}
+
+.person-info {
+    width: 15rem;
+}
+
+.episode-info {
+    margin-left: 10px;
+    align-self: center;
+} 
+
+#search-form {
+    margin-top: 20px;
+    width: 50%;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: nowrap;
+}
+
+
+.Show .media {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Show .media .media-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

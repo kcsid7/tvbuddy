@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %} Home Page {% endblock %}
+
+
+
+{% block content %} 
+
+<h1>All Shows Page</h1>
+
+<ul>
+    {% for show in shows %}
+    <li><strong>Show Id:</strong> {{show.show_id}} | <strong>Show Name:</strong> {{show.show_name}}</li>
+    {% endfor %}
+</ul>
+
+<button class="btn btn-md btn-success"><a href="/users">All Users</a></button>
+<button class="btn btn-md btn-primary"><a href="/tvbuddy">tvBuddy</a></button>
+
+
+
+
+{% endblock %}

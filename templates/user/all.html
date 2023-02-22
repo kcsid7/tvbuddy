@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} Home Page {% endblock %}
+
+
+
+{% block content %} 
+
+<h1 class="my-5">All Users Page</h1>
+
+<ul class="list-group my-3">
+    {% for user in users %}
+    <li class="list-group-item my-2">
+        <div><strong>First Name: </strong>{{user.first_name}} </div>
+        <div><strong>Last Name: </strong>{{user.last_name}} </div>
+        <div><strong>Username: </strong>{{user.username}} </div>
+        <div><strong>Email: </strong>{{user.email}} </div>
+    </li>
+    {% endfor %}
+</ul>
+
+<button class="btn btn-md btn-primary"><a href="/tvbuddy">tvBuddy</a></button>
+
+
+
+
+{% endblock %}

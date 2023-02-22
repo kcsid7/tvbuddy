@@ -1,0 +1,80 @@
+{% extends 'base.html'%}
+
+
+{% block content %}
+
+<h1 class="my-5 display-1">{{ user.username }}</h1>
+
+{% if user.fav_actors %}
+<div id="recommendations">
+    <h3 class="my-3 display-5">Maybe you'll like 
+        <button id="rec_btn_shuffle" class="btn btn-success"><i class="fa-solid fa-repeat fa-lg"></i></button>
+    </h3>
+    <ul class="list-group d-flex flex-row" id="recommendation_list">
+
+    </ul>
+</div>
+{% endif %}
+
+
+<div class="row mt-3 d-flex flex-row" id="shows-list">
+    <div class="w-50">
+        <ul class="list-group">
+            <h3 class="my-3 display-5">Favorite Shows</h3>
+        {% for favshow in user.fav_shows %}
+            <li class="list-group-item my-3 w-50 border border-light" style="background-color: rgb(177, 192, 224); height: 18.5rem;">
+                <div class="card h-100 card_profile">
+                    <img src="{{ favshow.show_img }}" alt="{{ favshow.show_name}}" class="img-thumbnail profile-data-img">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="/tvbuddy/shows/{{ favshow.show_id }}" style="text-decoration: none">
+                                {{favshow.show_name}} <span style="display: none" class="favshow_id">{{ favshow.show_id }}</span>
+                            </a>
+                        </h5>
+                        <form action="/user/{{ user.user_id }}/{{ favshow.show_id }}/delete" class="del_actor_profile" method="POST">
+                            <button class="btn btn-sm btn-danger"><i class="fa-solid fa-xmark"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+    
+    <div class="w-50">
+        <ul class="list-group">
+            <h3 class="my-3 display-5">Favorite Actors</h3>
+            {% for favactor in user.fav_actors %}
+            <li class="list-group-item my-3 w-50 border border-light" style="background-color: rgb(177, 192, 224); height: 18.5rem;">
+                <div class="card h-100 card_profile">
+                    <img src="{{ favactor.actor_image }}" alt="{{ favactor.actor_name }}" class="img-thumbnail profile-data-img">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                                {{ favactor.actor_name }} <span style="display: none" class="favactor_id">{{ favactor.actor_id }}</span>
+                        </h5>
+                        <form action="/user/{{ user.user_id }}/{{ favactor.actor_id }}/delete/actor" class="del_actor_profile" method="POST">
+                            <button class="btn btn-sm btn-danger"><i class="fa-solid fa-xmark"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</div>
+
+
+
+{% endblock %}
+
+{% block cus_scripts %} 
+<script src="/static/js/tvMaze.js"></script>
+<script>
+    getRecommendations();
+    $("#rec_btn_shuffle").on("click", function() {
+        getRecommendations();
+    })
+</script>
+
+{% endblock %}

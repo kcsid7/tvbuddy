@@ -1,0 +1,95 @@
+{% extends 'base.html'%}
+
+
+{% block content %}
+
+    <!-- Displays additional information about each show -->
+    <section id="episodes-area">
+        <div id="episodes-area-head">
+            <div class="d-flex align-items-center">
+                <h2 style="display: none" id="head_show_id">{{ data.id }}</h2>
+                <h1 id="episodes-title" class="display-1 mx-3 episode font-weight-bold" style="font-size: 5rem;">
+                    {{ data.name }}
+                </h1>
+
+                <!-- To Save The Show To Database If User Is Logged In -->
+                {% if session['username'] %}
+                <form action="/tvbuddy/shows/{{ data.id }}/save" method="POST">
+                    <input type="text" name="showname" style="display: none" value="{{ data.name }}">
+                    <input type="text" name="showimage" style="display: none" value="{{ data.image.original }}">
+                    <button class="btn {{'btn-danger' if favShow else 'btn-outline-danger'}} mx-2 Show-addToFav" type="submit">
+                        <i class="fa-regular fa-heart {{'fa-solid' if favShow else ''}}" style="pointer-events: none;"></i>
+                    </button> 
+                </form>
+                {% endif %}
+            </div>
+            
+        </div>
+        <div class="show_details px-5 mb-5">
+             <h5>Genre: <span>
+                {% for genre in data.genres %}
+                    {{ genre }} | 
+                {% endfor %}
+             </span></h5>
+             <h6>Status: <span id="episodes_show_status" class=""></span></h6>
+             <p id="episodes_show_summary"></p>
+             <button class="btn btn-success" id="show_cast_btn">{{ 'Show Episodes' if redirect_cast else 'Show Cast' }}</button>
+        </div>
+
+        <ul id="episodes-list" 
+            style="{{ 'display: none' if redirect_cast else 'display: block' }}"
+            class="{{ 'hidden' if redirect_cast else '' }}"
+        >
+        </ul>
+
+        <ul id="cast-list" 
+            style="list-style: none; {{ 'display: block' if redirect_cast else 'display: none' }}"
+            class="{{ '' if redirect_cast else 'hidden' }}"
+        >
+            {% for cast in cast_data %}
+            <li class="cast d-flex episode py-4 w-50" style="height: 17rem;">
+
+                <div class="person-info d-flex mx-5 align-items-center">
+                    <div>
+                        <img class="cast-image img-thumbnail" src="{{ cast.character.image.medium if cast.character.image.medium else '/static/img/noimg.png' }}">
+                        <h6 class="mt-2 d-flex mx-2" style="width: 10rem">
+                            {{cast.character.name}}
+                        </h6>              
+                    </div>
+                </div>
+
+                <div class="person-info d-flex mx-5 align-items-center">
+                    <div>
+                        <img 
+                            class="cast-image img-thumbnail" 
+                            src="{{ cast.person.image.medium if cast.person.image.medium else '/static/img/noimg.png'}}" >
+                        <h6 class="mt-2 d-flex mx-2" style="width: 10rem">
+                            {{cast.person.name}}
+                            <form action="/users/actors/{{ cast.person.id }}/save" method="POST" class="align-self-center">
+                                <input type="text" name="actorname" style="display: none" value="{{ cast.person.name }}">
+                                <input type="text" name="actorimg" style="display: none" value="{{ cast.person.image.original }}">
+                                <input type="text" name="showid" style="display: none" value="{{ data.id }}">
+                                <button class="btn btn-sm mx-2 {{ 'btn-danger' if cast.person.id in user_fav_actors else 'btn-outline-danger'}}" type="submit">
+                                    <i class="fa-regular fa-heart {{ 'fa-solid' if cast.person.id in user_fav_actors }}" style="pointer-events: none;"></i>
+                                </button> 
+                            </form>  
+                        </h6>              
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>  
+
+
+
+{% endblock %}
+
+{% block cus_scripts %} 
+    <script src="/static/js/tvMaze.js"></script>
+    <script>
+        const sh_id = $("#head_show_id").text();
+        get_episodes_cast(sh_id);
+        fill_episode_details(sh_id);
+    </script>
+{% endblock %}

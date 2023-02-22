@@ -1,0 +1,67 @@
+{% extends 'base.html'%}
+
+<!-- {% block styles %} 
+<link rel="stylesheet" href="/static/css/tvBuddy.css">
+{% endblock %} -->
+
+
+{% block content %}
+
+    <div id="top_block">
+
+      <h1 id="web-title">
+        <i class="fa-solid fa-display"></i>Buddy
+      </h1>
+      
+      <!-- Search Form -->
+      <div id="search-form-div" class="w-100 d-flex flex-column">
+        <form class="form-inline d-flex flex-row mx-auto" id="search-form">
+          <input class="form-control" id="search-query" name="search-query" value="">
+          <button class="btn {{ 'btn-success' if session['username'] else 'btn-primary'}} mx-2 w-50" type="submit" id="tv-search">Search For Shows</button>
+        </form>
+        <div class="alert alert-danger my-2 text-center w-75 align-self-center" id="search_form_error" role="alert" style="display: none">
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Displays the list of shows from the search form -->
+    <div class="row mt-3" id="shows-list">
+    </div>
+
+
+    <!-- Displays additional information about each show -->
+    <section style="display: none" id="episodes-area">
+      <div id="episodes-area-head">
+        <div class="d-flex align-items-center">
+          <h2 id="episodes-title" class="display-1 mx-3 episode font-weight-bold" style="font-size: 5rem;"></h2>
+
+          <!-- To Save The Show To Database If User Is Logged In -->
+          {% if session['username'] %}
+          <button class="btn btn-danger mx-2 Show-addToFav">
+            <i class="fa-regular fa-heart" style="pointer-events: none;"></i>
+          </button> 
+          {% endif %}
+
+        </div>
+        <button class="btn btn-primary" id="episodes-list-back">Go Back</button> 
+      </div>
+
+      <div class="show_details px-5 mb-5">
+        <h5>Genre: <span id="show-genres-id"></span></h5>
+        <h6>Status: <span id="episodes_show_status" class=""></span></h6>
+        <p id="episodes_show_summary"></p>
+    </div>
+
+
+      <ul id="episodes-list">
+      </ul>
+    </section>  
+
+{% endblock %}
+
+{% block cus_scripts %} 
+    <script src="/static/js/tvMaze.js"></script>
+{% endblock %}
+
+
