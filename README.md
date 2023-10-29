@@ -30,7 +30,7 @@ https://www.tvmaze.com/api
 4. PostgreSQL
 5. SQLAlchemy==1.4.46
 
-### Installing
+### Installing and Running
 
 * Clone the repository, ensure the requirements.txt file is in place, and install dependencies
 ```
@@ -40,6 +40,15 @@ pip install -r requirements.txt
 ```
 flask run
 ```
+
+## Authors
+
+sKc
+
+## Version History
+
+* 0.1
+    * Initial Release
 
 
 
