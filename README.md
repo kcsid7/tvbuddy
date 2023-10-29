@@ -25,9 +25,21 @@ https://www.tvmaze.com/api
 
 ## Tech Stack
 1. Python
-2. Flask
-3. Jinja
+2. Flask==2.2.2
+3. Jinja2==3.1.2py
 4. PostgreSQL
+5. SQLAlchemy==1.4.46
+
+### Installing
+
+* Clone the repository, ensure the requirements.txt file is in place, and install dependencies
+```
+pip install -r requirements.txt
+```
+* The application uses Python for server side functionality which serves Jinja templates to the front end using Flask.
+```
+flask run
+```
 
 
 
